@@ -200,42 +200,4 @@ public class LoginController implements Serializable {
         }
     }*/
 }
-/*    @PostMapping("/login")
-    @ResponseBody
-    public String login(@RequestParam("email") String email, @RequestParam("password") String password,HttpServletRequest request) {
-        System.out.println("进入Login");
-        logger.info("用户名：" + email + "密码：" + password);
-        System.out.println(request.getClass());
-        HttpSession session=request.getSession();
-        System.out.println(session.getClass());
 
-        //根据传输数据，创建Token
-        UsernamePasswordToken token = new UsernamePasswordToken(email, password);
-        //设置为记住当前用户
-        *//*token.setRememberMe(true);*//*
-        //创建信息集合Subject
-        Subject subject = SecurityUtils.getSubject();
-
-        //进行登录认证
-        try {
-            subject.login(token);
-            System.out.println(subject.isAuthenticated());
-        }catch(UnknownAccountException ex){
-            logger.debug("账号错误");
-            *//*session.setAttribute("AccountError","无此账号");*//*
-            return "{\"windowinfo\":\"账号错误！！！\"}";
-        }catch(IncorrectCredentialsException ex){
-            logger.debug("密码错误");
-            return "{\"windowinfo\":\"密码错误！！！\"}";
-        }catch(LockedAccountException ex){
-            logger.debug("账号已被锁定，请与系统管理员联系");
-            return "{\"windowinfo\":\"账号已被锁定，请与系统管理员联系！！！\"}";
-        }catch(AuthenticationException ex){
-            logger.debug("您没有授权!");
-            return "{\"windowinfo\":\"您没有授权！！！\"}";
-        }*//*finally {
-            subject.logout();
-        }*//*
-        return "{\"result\":\"failed\",\"message\":\"shibai！\"}";
-    }
-}*/
