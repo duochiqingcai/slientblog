@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:cache="http://www.springframework.org/schema/cache"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-4.3.xsd
+                        http://www.springframework.org/schema/tx
+                        http://www.springframework.org/schema/tx/spring-tx.xsd
+                        http://www.springframework.org/schema/cache
+                        http://www.springframework.org/schema/cache/spring-cache.xsd">
+    <!--加载shiro配置文件-->
+    <!--<import resource="spring-shiro.xml"/>-->
+    <import resource="spring-threadpool.xml"/>
+    <!-- 自动扫描组件 -->
+    <context:component-scan base-package="com.ling"/>
+    <!--1.引入外部配置文件，配置数据库和redis相关参数 -->
+    <context:property-placeholder location="classpath:jdbc-druid.properties" ignore-unresolvable="true"/>
+    <context:property-placeholder location="classpath:redis.properties"/>
+    <context:property-placeholder location="classpath:email.properties"/>
+    <!-- 启用缓存注解功能，这个是必须的，否则注解不会生效，另外，该注解一定要声明在spring主配置文件中才会生效 -->
+    <cache:annotation-driven cache-manager="redisCacheManager"/>
+    <!-- 2.数据库连接池dbcp连接池 -->
+    <!--    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+            <property name="driverClassName" value="${jdbc.driver}"/>
+            <property name="url" value="${jdbc.url}"/>
+            <property name="username" value="${jdbc.username}"/>
+            <property name="password" value="${jdbc.password}"/>
+
+            &lt;!&ndash; 初始化连接大小 &ndash;&gt;
+            <property name="initialSize" value="${initialSize}"/>
+            &lt;!&ndash; 连接池最大数量 &ndash;&gt;
+            <property name="maxActive" value="${maxActive}"/>
+            &lt;!&ndash; 连接池最大空闲 &ndash;&gt;
+            <property name="maxIdle" value="${maxIdle}"/>
+            &lt;!&ndash; 连接池最小空闲 &ndash;&gt;
+            <property name="minIdle" value="${minIdle}"/>
+            &lt;!&ndash; 获取连接最大等待时间 &ndash;&gt;
+            <property name="maxWait" value="${maxWait}"/>
+        </bean>-->
+    <!--    &lt;!&ndash; 2.数据库连接池c3p0连接池 &ndash;&gt;
+        <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+            &lt;!&ndash; 基础配置 &ndash;&gt;
+            <property name="driverClass" value="${jdbc.driver}"/>
+            <property name="jdbcUrl" value="${jdbc.url}"/>
+            <property name="user" value="${jdbc.username}"/>
+            <property name="password" value="${jdbc.password}"/>
+
+            &lt;!&ndash; 关键配置 &ndash;&gt;
+            &lt;!&ndash;初始化时获取三个连接，取值应在minPoolSize与maxPoolSize之间。Default: 3 &ndash;&gt;
+            <property name="initialPoolSize" value="3"/>
+            &lt;!&ndash;连接池中保留的最小连接数。Default: 2 &ndash;&gt;
+            <property name="minPoolSize" value="2"/>
+            &lt;!&ndash;连接池中保留的最大连接数。Default: 15 &ndash;&gt;
+            <property name="maxPoolSize" value="15"/>
+            &lt;!&ndash;当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 &ndash;&gt;
+            <property name="acquireIncrement" value="3"/>
+        </bean>-->
+    <!--2.配置alibaba druid连接池-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <!--基本配置-->
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="${maxActive}"/>
+        <!--其它配置-->
+        <!--初始化时连接数1-->
+        <property name="initialSize" value="1"/>
+        <!--最大等待时间-->
+        <property name="maxWait" value="60000"/>
+        <!--最小空闲连接池数-->
+        <property name="minIdle" value="1"/>
+    </bean>
+    <!-- 3.配置mybatis,SqlSessionFactory对象 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--注入数据库连接池-->
+        <property name="dataSource" ref="dataSource"/>
+        <!-- 扫描pojo包 使用别名 -->
+        <property name="typeAliasesPackage" value="com.ling.pojo"/>
+        <!-- 自动扫描mapping.xml文件 -->
+        <property name="mapperLocations" value="classpath:com/ling/dao/mapper/*.xml"/>
+        <!--        <property name="configLocation" value="classpath:mybatis-config.xml"/>-->
+    </bean>
+
+    <!-- 4.配置扫描Dao接口包，动态实现Dao接口，注入到spring容器中 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--配置扫描Dao接口包-->
+        <property name="basePackage" value="com.ling.dao"/>
+        <!--注入sqlSessionFactory-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+    <!--5.事务管理-->
+    <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!-- 配置基于注解的声明式事务 -->
+    <tx:annotation-driven/>
+
+    <!--Redis-Config start!!!-->
+    <!--6.Redis连接池配置-->
+    <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxIdle" value="${redis.maxIdle}"/>
+        <property name="maxTotal" value="${redis.maxActive}"/>
+        <property name="maxWaitMillis" value="${redis.maxWait}"/>
+        <property name="testOnBorrow" value="${redis.testOnBorrow}"/>
+    </bean>
+
+    <!--7.配置JedisConnectionFactory-->
+    <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+          p:host-name="${redis.host}" p:port="${redis.port}"
+          p:password="${redis.pass}" p:pool-config-ref="poolConfig"/>
+
+    <!--8.配置redisTemplate模板-->
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+        <property name="connectionFactory" ref="jedisConnectionFactory" />
+        <!-- 如果不配置Serializer，那么存储的时候只能使用String，如果用对象类型存储，那么会提示错误 can't cast to String！！！-->
+        <property name="keySerializer">
+            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+        </property>
+        <property name="valueSerializer">
+            <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
+        </property>
+        <property name="hashKeySerializer">
+            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+        </property>
+        <property name="hashValueSerializer">
+            <bean class="org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer"/>
+        </property>
+        <!--开启事务  -->
+        <property name="enableTransactionSupport" value="true"/>
+    </bean>
+
+    <!--9.redis缓存管理器 2.0以上版本此配置无效 -->
+    <bean id="redisCacheManager" class="org.springframework.data.redis.cache.RedisCacheManager">
+        <constructor-arg name="redisOperations" ref="redisTemplate"/>
+        <property name="defaultExpiration" value="${redis.expiration}"/>
+    </bean>
+    <!-- 10.配置RedisCacheConfig -->
+    <!--<bean id="redisCacheConfig" class="com.ssm.utils.RedisCacheConfig">
+        <constructor-arg ref="jedisConnectionFactory" />
+        <constructor-arg ref="redisTemplate" />
+        <constructor-arg ref="redisCacheManager" />
+    </bean>-->
+    <!--Redis-Config end!!!-->
+<!--    &lt;!&ndash; 开启缓存注解 &ndash;&gt;
+    <cache:annotation-driven/>
+    &lt;!&ndash; spring的缓存管理器(不是redis自带redisCacheManager管理器)，这里定义了缓存位置名称 ，即注解中的value &ndash;&gt;
+    <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
+        <property name="caches">
+            <set>
+                <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+                        p:name="default" />
+                &lt;!&ndash; 这里可以配置多个redis &ndash;&gt;
+                &lt;!&ndash; <bean class="com.cn.util.RedisCache">
+                     <property name="redisTemplate" ref="redisTemplate" />
+                     <property name="name" value="default"/>
+                </bean> &ndash;&gt;
+                &lt;!&ndash;<bean class="com.ling.util.RedisCache">
+                    <property name="redisTemplate" ref="redisTemplate" />
+                    <property name="name" value="common"/>
+                    &lt;!&ndash; common名称要在类或方法的注解中使用 &ndash;&gt;
+                </bean>&ndash;&gt;
+            </set>
+        </property>
+    </bean>-->
+    <!--10.javaMail邮件发送-->
+    <bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <!--邮箱服务器-->
+        <property name="host" value="smtp.qq.com"/>
+        <!--节点-->
+        <property name="port" value="465"/>
+        <!--邮箱服务协议-->
+        <property name="protocol" value="smtp"/>
+        <!--用户名-->
+        <property name="username" value="silentwhale@qq.com"/>
+        <!--QQ邮箱授权码-->
+        <property name="password" value="kutxxxjsstlfhbab"/>
+        <!--默认编码-->
+        <property name="defaultEncoding" value="UTF-8"/>
+        <!--常规参数配置-->
+        <property name="javaMailProperties">
+            <props>
+                <!--需要服务器认证用户和密码-->
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+                <prop key="mail.smtp.timeout">25000</prop>
+                <!--
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+                -->
+            </props>
+        </property>
+    </bean>
+</beans>

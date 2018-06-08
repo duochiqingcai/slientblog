@@ -1,0 +1,13 @@
+[2018-06-06 13:27:15] INFO  com.alibaba.druid.pool.DruidDataSource 922 init - {dataSource-1} inited
+[2018-06-06 13:27:17] INFO  com.alibaba.druid.pool.DruidDataSource 1817 close - {dataSource-1} closed
+[2018-06-06 13:27:40] INFO  com.alibaba.druid.pool.DruidDataSource 922 init - {dataSource-1} inited
+[2018-06-06 13:27:41] INFO  com.alibaba.druid.pool.DruidDataSource 1817 close - {dataSource-1} closed
+[2018-06-06 13:30:07] INFO  com.alibaba.druid.pool.DruidDataSource 922 init - {dataSource-1} inited
+[2018-06-06 13:30:08] INFO  com.alibaba.druid.pool.DruidDataSource 1817 close - {dataSource-1} closed
+[2018-06-06 13:31:14] INFO  com.alibaba.druid.pool.DruidDataSource 922 init - {dataSource-1} inited
+[2018-06-06 13:33:22] INFO  com.alibaba.druid.pool.DruidDataSource 1817 close - {dataSource-1} closed
+[2018-06-06 13:33:40] INFO  com.alibaba.druid.pool.DruidDataSource 922 init - {dataSource-1} inited
+[2018-06-06 13:33:41] INFO  com.alibaba.druid.pool.DruidDataSource 1817 close - {dataSource-1} closed
+[2018-06-06 13:36:07] INFO  com.alibaba.druid.pool.DruidDataSource 922 init - {dataSource-1} inited
+[2018-06-06 13:40:01] INFO  com.alibaba.druid.pool.DruidDataSource 922 init - {dataSource-1} inited
+[2018-06-06 13:40:02] INFO  com.alibaba.druid.pool.DruidDataSource 1817 close - {dataSource-1} closed
