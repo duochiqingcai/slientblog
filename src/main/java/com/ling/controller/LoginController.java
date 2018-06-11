@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -146,7 +147,7 @@ public class LoginController implements Serializable {
     @PostMapping("/login")
     @ResponseBody
     public Map<String, Object> login(@RequestParam("email") String email, @RequestParam("password")
-            String password, HttpSession session) {
+            String password, HttpSession session,Model model) {
         System.out.println("进入Login");
         logger.info("用户名：" + email + "密码：" + password);
         Map<String, Object> map = new HashMap<>();

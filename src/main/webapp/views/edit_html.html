@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>wangEditor3 上传图片至七牛云存储</title>
+</head>
+<body>
+<p>wangEditor3 上传到七牛云存储</p>
+<div id="div1">
+    <p>欢迎使用 wangEditor 富文本编辑器</p>
+</div>
+<button type="button" onclick="publish()"></button>
+<script type="text/javascript" src="/views/static/upLoadImg/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/views/static/upLoadImg/wangEditor.js"></script>
+<script type="text/javascript" src="/views/static/upLoadImg/plupload/plupload.full.min.js"></script>
+<script type="text/javascript" src="/views/static/upLoadImg/plupload/i18n/zh_CN.js"></script>
+<script type="text/javascript" src="/views/static/upLoadImg/qiniu.js"></script>
+<script type="text/javascript" src="/views/static/upLoadImg/uploads.js"></script>
+<script type="text/javascript">
+    var E = window.wangEditor;
+    var editor = new E('#div1');
+    // 允许上传到七牛云存储
+    editor.customConfig.qiniu = true;
+    editor.create();
+    // 初始化七牛上传
+    uploadInit();
+</script>
+</body>
+</html>

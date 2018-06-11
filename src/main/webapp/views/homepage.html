@@ -13,9 +13,9 @@
     </title>
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <link href="/views/static/css/bootstrap.min.css" rel="stylesheet">
     <link href="/views/static/css/toolkit.css" rel="stylesheet">
     <link href="/views/static/css/application.css" rel="stylesheet">
-
     <style>
         /* note: this is a hack for ios iframe for bootstrap themes shopify page */
         /* this chunk of css is not part of the toolkit :) */
@@ -24,8 +24,19 @@
             min-width: 100%;
             *width: 100%;
         }
-    </style>
 
+    </style>
+    <style type="text/css">
+        .toolbar {
+            border: 0 solid #ccc;
+            background-color: #ffffff;
+            position: sticky;
+        }
+
+        .btn-anniu {
+            padding: 0 0 10px 0;
+        }
+    </style>
 </head>
 
 
@@ -503,30 +514,23 @@
         </div>
 
         <div class="fm">
-
-            <ul class="ca bow box afo">
-
-                <li class="rv b agz">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Message">
-                        <div class="bpt">
-                            <button type="button" class="cg ns yf">
-                                <span class="h bao"></span>
-                            </button>
-                        </div>
+            <div class="ca bow box afo">
+                <div class="editTool">
+                    <div id="div1" class="toolbar">
                     </div>
-                </li>
-
-                <li class="rv b agz">
-                    <img
-                            class="bos vb yb aff"
-                            src="/views/static/img/avatar-dhg_1.png">
+                    <div class="btn-anniu">
+                        <button type="button" class="btn-publish btn btn-success" style="width: 100%"
+                                onclick="publish();return false;"> 发布随想
+                        </button>
+                    </div>
+                </div>
+                <div class="rv b agz">
+                    <img class="bos vb yb aff" src="/views/static/img/avatar-dhg_1.png">
                     <div class="rw">
                         <div class="bpb">
                             <small class="acx axc">4 min</small>
                             <h6>一个小码农</h6>
                         </div>
-                        <h4>将进酒-李白</h4>
                         <p>
                             君不见，黄河之水天上来，奔流到海不复回。
                             君不见，高堂明镜悲白发，朝如青丝暮成雪。
@@ -563,7 +567,7 @@
                                      src="/views/static/img/unsplash_2.jpg">
                             </div>
                         </div>
-
+                        <hr>
                         <ul class="bow afa">
                             <li class="rv afh">
                                 <img
@@ -590,152 +594,9 @@
                             </li>
                         </ul>
                     </div>
-                </li>
-
-                <li class="rv b agz">
-                    <img
-                            class="bos vb yb aff"
-                            src="/views/static/img/avatar-fat.jpg">
-                    <div class="rw">
-                        <div class="bpd">
-                            <div class="bpb">
-                                <small class="acx axc">12 min</small>
-                                <h6>Jacob Thornton</h6>
-                            </div>
-                            <p>
-                                Donec id elit non mi porta gravida at eget metus. Integer posuere erat a ante venenatis
-                                dapibus posuere velit aliquet. Cum sociis natoque penatibus et magnis dis parturient
-                                montes, nascetur ridiculus mus. Morbi leo risus, porta ac consectetur ac, vestibulum at
-                                eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            </p>
-                        </div>
-                    </div>
-                </li>
-
-                <li class="rv b agz">
-                    <img
-                            class="bos vb yb aff"
-                            src="/views/static/img/avatar-mdo.png">
-                    <div class="rw">
-                        <div class="bpb">
-                            <small class="acx axc">34 min</small>
-                            <h6>Mark Otto</h6>
-                        </div>
-
-                        <p>
-                            Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod
-                            semper. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Etiam
-                            porta sem malesuada magna mollis euismod. Donec sed odio dui.
-                        </p>
-
-                        <div class="boy" data-grid="images">
-                            <img style="display: none" data-width="640" data-height="640" data-action="zoom"
-                                 src="/views/static/img/instagram_3.jpg">
-                        </div>
-
-                        <ul class="bow">
-                            <li class="rv">
-                                <img
-                                        class="bos vb yb aff"
-                                        src="/views/static/img/avatar-dhg_1.png">
-                                <div class="rw">
-                                    <strong>一个小码农: </strong>
-                                    Donec id elit non mi porta gravida at eget metus. Vivamus sagittis lacus vel augue
-                                    laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus auctor
-                                    fringilla. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Sed
-                                    posuere consectetur est at lobortis.
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <!--隐藏内容-->
-        <!--<div class="popover bs-popover-bottom fade show" role="tooltip" id="popover320338"
-             style="will-change: transform; position: absolute; transform: translate3d(1119px, 649px, 0px); top: 0px; left: 0px;"
-             x-placement="bottom">
-            <div class="arrow" style="left: 84px;"></div>
-            <div class="popover-body popover-content px-0">
-                <ul class="nav nav-pills nav-stacked flex-column" style="width: 120px">
-                    <li class="pi"><a class="pg" href="#" data-action="growl">Growl</a></li>
-                    <li class="pi"><a class="pg" href="login/index.html">Logout</a></li>
-                </ul>
+                </div>
             </div>
-        </div>-->
-        <!--    <div class="fj">
-              <div class="alert ro alert-dismissible d-none vy" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <a class="rj" href="profile/index.html">Visit your profile!</a> Check your self, you aren't looking well.
-              </div>
-
-              <div class="pz afo d-none vy">
-                <div class="qa">
-                  <h6 class="afh">Sponsored</h6>
-                  <div data-grid="images" data-target-height="150">
-                    <img class="bos" data-width="640" data-height="640" data-action="zoom" src="/views/static/img/instagram_2.jpg">
-                  </div>
-                  <p><strong>It might be time to visit Iceland.</strong> Iceland is so chill, and everything looks cool here. Also, we heard the people are pretty nice. What are you waiting for?</p>
-                  <button class="cg nz ok">Buy a ticket</button>
-                </div>
-              </div>
-
-              <div class="pz afo d-none vy">
-                <div class="qa">
-                <h6 class="afh">Likes <small>· <a href="#">View All</a></small></h6>
-                <ul class="bow box">
-                  <li class="rv afa">
-                    <img
-                      class="bos vb yb aff"
-                      src="/views/static/img/avatar-fat.jpg">
-                    <div class="rw">
-                      <strong>Jacob Thornton</strong> @fat
-                      <div class="bpa">
-                        <button class="cg nz ok">
-                          <span class="h ayi"></span> Follow</button>
-                      </div>
-                    </div>
-                  </li>
-                   <li class="rv">
-                    <a class="bpu" href="#">
-                      <img
-                        class="bos vb yb aff"
-                        src="/views/static/img/avatar-mdo.png">
-                    </a>
-                    <div class="rw">
-                      <strong>Mark Otto</strong> @mdo
-                      <div class="bpa">
-                        <button class="cg nz ok">
-                          <span class="h ayi"></span> Follow</button></button>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-                </div>
-                <div class="qg">
-                  Dave really likes these nerds, no one knows why though.
-                </div>
-              </div>
-
-              <div class="pz bpm">
-                <div class="qa">
-                  © 2018 Bootstrap
-                  <a href="#">About</a>
-                  <a href="#">Help</a>
-                  <a href="#">Terms</a>
-                  <a href="#">Privacy</a>
-                  <a href="#">/views/static/jss</a>
-                  <a href="#">Ads </a>
-                  <a href="#">Info</a>
-                  <a href="#">Brand</a>
-                  <a href="#">Blog</a>
-                  <a href="#">Status</a>
-                  <a href="#">Apps</a>
-                  <a href="#">Jobs</a>
-                  <a href="#">Advertise</a>
-                </div>
-              </div>
-            </div>-->
+        </div>
     </div>
 </div>
 
@@ -745,7 +606,23 @@
 <script type="text/javascript" src="/views/static/js/chart.js"></script>
 <script type="text/javascript" src="/views/static/js/toolkit.js"></script>
 <script type="text/javascript" src="/views/static/js/application.js"></script>
+<!--<script type="text/javascript" src="/views/static/js/wangEditor.min.js"></script>-->
+<!--上传图片至七牛-->
+<script type="text/javascript" src="/views/static/upLoadImg/wangEditor.js"></script>
+<script type="text/javascript" src="/views/static/upLoadImg/plupload/plupload.full.min.js"></script>
+<script type="text/javascript" src="/views/static/upLoadImg/plupload/i18n/zh_CN.js"></script>
+<script type="text/javascript" src="/views/static/upLoadImg/qiniu.js"></script>
+<!--<script type="text/javascript" src="/views/static/upLoadImg/uploads.js"></script>-->
 <script src="/views/static/js/homepage.js"></script>
+<script type="text/javascript">
+    var E = window.wangEditor;
+    var editor = new E('#div1');
+    // 允许上传到七牛云存储
+    editor.customConfig.qiniu = true;
+    editor.create();
+    // 初始化七牛上传
+    uploadInit();
+</script>
 <!--<script>
     // execute/clear BS loaders for docs
     $(function () {

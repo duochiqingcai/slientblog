@@ -65,7 +65,6 @@ function signin() {
             success: function (data) {
                 console.log('请求成功');
                 console.log(data);
-                alert('准备跳转');
                 if (data.hasOwnProperty("loginException")) {
                     console.log(data.loginException);
                 } else {
