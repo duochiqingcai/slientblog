@@ -1,27 +1,28 @@
-/*$(document).ready(function loginCheck() {
-    console.log('Login Check!!!');
+$(document).ready(function getBlog() {
+    console.log('获取博客信息');
 
-    if(sessionStorage.getItem('username')){
+/*    if(sessionStorage.getItem('username')){
         $('.hideli').hide();
-    }
-/!*    $.ajax({
-        url:'http://localhost:8080/loginCheck',
+    }*/
+
+    var user_email=sessionStorage.getItem('email');
+    var data={'user_email':user_email,'m':0};
+    console.log(data);
+    $.ajax({
+        url:'/getblog',
         async:true,
+        type:'Get',
+        data:data,
         success:function (data) {
             alert('请求成功');
             console.log(data);
-            if (data.hasOwnProperty("ExceptionIfo")){
-                alert(data.ExceptionIfo);
-            }else {
-                alert('未登录');
-            }
         },
         error:function () {
             console.log('请求失败');
         },
         dataType:'json'
-    })*!/
-});*/
+    })
+});
 
 /*退出账户*/
 function logoutt() {

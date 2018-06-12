@@ -14,5 +14,5 @@ public interface MailService {
      * @param mail
      * 邮件发送功能
      */
-    public void sendMail(Mail mail);
+    void sendMail(Mail mail);
 }

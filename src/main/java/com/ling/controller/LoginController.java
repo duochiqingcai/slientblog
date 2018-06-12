@@ -46,18 +46,12 @@ public class LoginController implements Serializable {
     @Resource
     private LoginService loginService;
 
-/*    @PostMapping("/register")
-    public String register(@RequestParam("email") String email,@RequestParam("username") String username, @RequestParam("password") String password){
-        System.out.println("Email:"+email+"username:"+username+"password:"+password);
-        //注册用户信息至数据库
-        userDao.insertUser(username,Md5Utils.TransMd5(password,username),email);
-        //发送邮件
-        String[] receivers={email};
-        Mail mail=new Mail(receivers,null,"用户注册","注册成功呀哈哈哈哈哈");
-        mailService.sendMail(mail);
-
-        return "login ";
-    }*/
+    @GetMapping("/test")
+    @ResponseBody
+    public User test(){
+        User user=userDao.getUserByEmail("2816924118@qq.com");
+        return user;
+    }
 
     /**
      * @param username

@@ -1,4 +1,6 @@
+import com.ling.dao.BlogDao;
 import com.ling.dao.UserDao;
+import com.ling.pojo.Blog;
 import com.ling.pojo.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,6 +11,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author:slientwhale
@@ -22,14 +26,17 @@ public class InsertTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(MailTest.class);
 
     @Resource
-    private UserDao userDao;
+    private BlogDao blogDao;
 
     @Test
     public void insertT() {
         try {
             /*userDao.insertUser("san1","72b5009d20df160619688bd4c91ce637","2816924118@qq.com");*/
-            User user=userDao.getUserByEmail("2816924118@qq.com");
-            System.out.println(user);
+            HashMap<Integer,Blog> map=(HashMap<Integer, Blog>) blogDao.getBlogByEmail("2816924118@qq.com",0);
+            for(Blog blog:map.values()){
+                System.out.println(blog.getBlog_content());
+            };
+            System.out.println(map);
         }catch (DuplicateKeyException e){
             System.out.println("已存在");
         }
