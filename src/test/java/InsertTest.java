@@ -2,6 +2,7 @@ import com.ling.dao.BlogDao;
 import com.ling.dao.UserDao;
 import com.ling.pojo.Blog;
 import com.ling.pojo.User;
+import com.ling.service.BlogService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -26,13 +27,13 @@ public class InsertTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(MailTest.class);
 
     @Resource
-    private BlogDao blogDao;
+    private BlogService blogService;
 
     @Test
     public void insertT() {
         try {
             /*userDao.insertUser("san1","72b5009d20df160619688bd4c91ce637","2816924118@qq.com");*/
-            HashMap<Integer,Blog> map=(HashMap<Integer, Blog>) blogDao.getBlogByEmail("2816924118@qq.com",0);
+            HashMap<Integer,Blog> map=(HashMap<Integer, Blog>) blogService.getBlog("fdfd4118@qq.com",0);
             for(Blog blog:map.values()){
                 System.out.println(blog.getBlog_content());
             };

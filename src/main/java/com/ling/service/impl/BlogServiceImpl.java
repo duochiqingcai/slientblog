@@ -20,7 +20,7 @@ public class BlogServiceImpl implements BlogService {
     @Resource
     private BlogDao blogDao;
 
-
+    @Cacheable(value = "BlogInfo",key = "#email+'Page'+#m.toString()")
     @Override
     public Map<Integer,Blog> getBlog(String email, int m) {
         return blogDao.getBlogByEmail(email,m);

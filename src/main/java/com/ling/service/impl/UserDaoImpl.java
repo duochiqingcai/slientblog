@@ -20,7 +20,7 @@ public class UserDaoImpl implements LoginService {
     private UserDao userDao;
 
     @Override
-    @Cacheable(value = "getUsre")
+    @Cacheable(value = "getUser")
     public User getUser(String email) {
         return userDao.getUserByEmail(email);
     }

@@ -7,15 +7,31 @@ $(document).ready(function getBlog() {
 
     var user_email=sessionStorage.getItem('email');
     var data={'user_email':user_email,'m':0};
+    var imgurl='http://pa1hj9wpk.bkt.clouddn.com/1.jpg';
+
     console.log(data);
     $.ajax({
         url:'/getblog',
         async:true,
-        type:'Get',
+        type:'POST',
         data:data,
         success:function (data) {
-            alert('请求成功');
             console.log(data);
+            $.map(data,function (value,key) {
+                console.log(value);
+                $('.editTool').after('<div class="rv b agz">\n' +
+                    '                    <img class="bos vb yb aff" src="/views/static/img/avatar-dhg_1.png">\n' +
+                    '                    <div class="rw">\n' +
+                    '                        <div class="bpb">\n' +
+                    '                            <small class="acx axc">'+value.blog_time+'</small>\n' +
+                    '                            <h6>一个小码农</h6>\n' +
+                    '                        </div>\n' +
+                    '<p>'+value.blog_content+'</p>\n'+
+
+                    '<img src='+imgurl+'>\n'+
+                    '                    </div>\n' +
+                    '                </div>');
+            })
         },
         error:function () {
             console.log('请求失败');
@@ -143,76 +159,5 @@ function publish() {
     /*uploadInit();*/
     alert("开始发布");
     console.log(editor.txt.html());
-    $('.editTool').append('<li class="rv b agz">\n' +
-        '                    <img class="bos vb yb aff" src="/views/static/img/avatar-dhg_1.png">\n' +
-        '                    <div class="rw">\n' +
-        '                        <div class="bpb">\n' +
-        '                            <small class="acx axc">4 min</small>\n' +
-        '                            <h6>一个小码农</h6>\n' +
-        '                        </div>\n' +
-                                editor.txt.html()+
-/*        '                        <p>\n' +
-        '                            君不见，黄河之水天上来，奔流到海不复回。\n' +
-        '                            君不见，高堂明镜悲白发，朝如青丝暮成雪。\n' +
-        '                            人生得意须尽欢，莫使金樽空对月。\n' +
-        '                            天生我材必有用，千金散尽还复来。\n' +
-        '                            烹羊宰牛且为乐，会须一饮三百杯。\n' +
-        '                            岑夫子，丹丘生，将进酒，杯莫停。\n' +
-        '                            与君歌一曲，请君为我倾耳听。\n' +
-        '                            钟鼓馔玉不足贵，但愿长醉不复醒。\n' +
-        '                            古来圣贤皆寂寞，惟有饮者留其名。\n' +
-        '                            陈王昔时宴平乐，斗酒十千恣欢谑。\n' +
-        '                            主人何为言少钱，径须沽取对君酌。\n' +
-        '                            五花马，千金裘，呼儿将出换美酒，与尔同销万古愁。\n' +
-        '                        </p>\n' +*/
-        /*'\n' +
-        '                        <div class="boy" data-grid="images">\n' +
-        '                            <div style="display: none">\n' +
-        '                                <img data-action="zoom" data-width="1050" data-height="700"\n' +
-        '                                     src="/views/static/img/unsplash_1.jpg">\n' +
-        '                            </div>\n' +
-        '\n' +
-        '                            <div style="display: none">\n' +
-        '                                <img data-action="zoom" data-width="640" data-height="640"\n' +
-        '                                     src="/views/static/img/instagram_1.jpg">\n' +
-        '                            </div>\n' +
-        '\n' +
-        '                            <div style="display: none">\n' +
-        '                                <img data-action="zoom" data-width="640" data-height="640"\n' +
-        '                                     src="/views/static/img/instagram_13.jpg">\n' +
-        '                            </div>\n' +
-        '\n' +
-        '                            <div style="display: none">\n' +
-        '                                <img data-action="zoom" data-width="1048" data-height="700"\n' +
-        '                                     src="/views/static/img/unsplash_2.jpg">\n' +
-        '                            </div>\n' +
-        '                        </div>\n' +
-        '\n' +                '<hr>'+
-        '                        <ul class="bow afa">\n' +
-        '                            <li class="rv afh">\n' +
-        '                                <img\n' +
-        '                                        class="bos vb yb aff"\n' +
-        '                                        src="/views/static/img/avatar-fat.jpg">\n' +
-        '                                <div class="rw">\n' +
-        '                                    <strong>Jacon Thornton: </strong>\n' +
-        '                                    Donec id elit non mi porta gravida at eget metus. Vivamus sagittis lacus vel augue\n' +
-        '                                    laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus auctor\n' +
-        '                                    fringilla. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Sed\n' +
-        '                                    posuere consectetur est at lobortis.\n' +
-        '                                </div>\n' +
-        '                            </li>\n' +
-        '                            <li class="rv">\n' +
-        '                                <img\n' +
-        '                                        class="bos vb yb aff"\n' +
-        '                                        src="/views/static/img/avatar-mdo.png">\n' +
-        '                                <div class="rw">\n' +
-        '                                    <strong>Mark Otto: </strong>\n' +
-        '                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dapibus, tellus ac\n' +
-        '                                    cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet\n' +
-        '                                    risus.\n' +
-        '                                </div>\n' +
-        '                            </li>\n' +
-        '                        </ul>\n' +*/
-        '                    </div>\n' +
-        '                </li>');
+
 }

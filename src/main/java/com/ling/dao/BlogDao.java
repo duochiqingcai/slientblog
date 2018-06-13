@@ -21,7 +21,7 @@ public interface BlogDao {
      * @return Blog
      */
     @MapKey("blog_id")
-    Map<Integer,Blog> getBlogByEmail(@Param("user_email")String user_email, @Param("m") int m);
+    Map<Integer,Blog> getBlogByEmail(@Param("user_email")String user_email, @Param("m")int m);
 
 /*    @MapKey("blog_id")
     Map<Integer,Blog> getByemail(@Param("user_email")String user_email);*/

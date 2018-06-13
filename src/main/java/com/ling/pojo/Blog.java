@@ -1,12 +1,14 @@
 package com.ling.pojo;
 
+import java.io.Serializable;
+
 /**
  * @author:slientwhale
  * @date: 2018/6/12 11:59
  * @description:blog表信息
  * @modify:
  */
-public class Blog {
+public class Blog implements Serializable {
     private Integer blog_id;
     private String user_email;
     private String blog_content;

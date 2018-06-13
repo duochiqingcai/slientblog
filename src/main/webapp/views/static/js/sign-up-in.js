@@ -27,7 +27,7 @@ function signup() {
                 data:JSON.stringify(signupdata),*/
         data: signupData,
         success: function (data) {
-            console.log('请求成功');
+            console.log('注册成功');
             console.log(data);
             if (data.hasOwnProperty("ExceptionIfo")) {
                 alert(data.ExceptionIfo);
@@ -63,8 +63,7 @@ function signin() {
                     data:JSON.stringify(signupdata),*/
             data: signinData,
             success: function (data) {
-                console.log('请求成功');
-                console.log(data);
+                console.log('登录成功');
                 if (data.hasOwnProperty("loginException")) {
                     console.log(data.loginException);
                 } else {

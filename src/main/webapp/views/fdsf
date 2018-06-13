@@ -1,5 +1,72 @@
-{
-"1":{"blog_id":1,"user_email":null,"blog_content":"君不见，黄河之水天上来，奔流到海不复回。","blog_picture":"1","blog_time":"2018-06-12 14:11:47.0","blog_description":null},
- "2":{"blog_id":2,"user_email":null,"blog_content":"君不见，高堂明镜悲白发，朝如青丝暮成雪。","blog_picture":"2","blog_time":"2018-06-12 16:29:34.0","blog_description":null},
- "3":{"blog_id":3,"user_email":null,"blog_content":"人生得意须尽欢，莫使金樽空对月。 天生我材必有用，千金散尽还复来。","blog_picture":"3","blog_time":"2018-06-12 16:30:08.0","blog_description":null}
-}
+$('.editTool').append('<li class="rv b agz">\n' +
+        '                    <img class="bos vb yb aff" src="/views/static/img/avatar-dhg_1.png">\n' +
+        '                    <div class="rw">\n' +
+        '                        <div class="bpb">\n' +
+        '                            <small class="acx axc">4 min</small>\n' +
+        '                            <h6>一个小码农</h6>\n' +
+        '                        </div>\n' +
+                                editor.txt.html()+
+/*        '                        <p>\n' +
+        '                            君不见，黄河之水天上来，奔流到海不复回。\n' +
+        '                            君不见，高堂明镜悲白发，朝如青丝暮成雪。\n' +
+        '                            人生得意须尽欢，莫使金樽空对月。\n' +
+        '                            天生我材必有用，千金散尽还复来。\n' +
+        '                            烹羊宰牛且为乐，会须一饮三百杯。\n' +
+        '                            岑夫子，丹丘生，将进酒，杯莫停。\n' +
+        '                            与君歌一曲，请君为我倾耳听。\n' +
+        '                            钟鼓馔玉不足贵，但愿长醉不复醒。\n' +
+        '                            古来圣贤皆寂寞，惟有饮者留其名。\n' +
+        '                            陈王昔时宴平乐，斗酒十千恣欢谑。\n' +
+        '                            主人何为言少钱，径须沽取对君酌。\n' +
+        '                            五花马，千金裘，呼儿将出换美酒，与尔同销万古愁。\n' +
+        '                        </p>\n' +*/
+        /*'\n' +
+        '                        <div class="boy" data-grid="images">\n' +
+        '                            <div style="display: none">\n' +
+        '                                <img data-action="zoom" data-width="1050" data-height="700"\n' +
+        '                                     src="/views/static/img/unsplash_1.jpg">\n' +
+        '                            </div>\n' +
+        '\n' +
+        '                            <div style="display: none">\n' +
+        '                                <img data-action="zoom" data-width="640" data-height="640"\n' +
+        '                                     src="/views/static/img/instagram_1.jpg">\n' +
+        '                            </div>\n' +
+        '\n' +
+        '                            <div style="display: none">\n' +
+        '                                <img data-action="zoom" data-width="640" data-height="640"\n' +
+        '                                     src="/views/static/img/instagram_13.jpg">\n' +
+        '                            </div>\n' +
+        '\n' +
+        '                            <div style="display: none">\n' +
+        '                                <img data-action="zoom" data-width="1048" data-height="700"\n' +
+        '                                     src="/views/static/img/unsplash_2.jpg">\n' +
+        '                            </div>\n' +
+        '                        </div>\n' +
+        '\n' +                '<hr>'+
+        '                        <ul class="bow afa">\n' +
+        '                            <li class="rv afh">\n' +
+        '                                <img\n' +
+        '                                        class="bos vb yb aff"\n' +
+        '                                        src="/views/static/img/avatar-fat.jpg">\n' +
+        '                                <div class="rw">\n' +
+        '                                    <strong>Jacon Thornton: </strong>\n' +
+        '                                    Donec id elit non mi porta gravida at eget metus. Vivamus sagittis lacus vel augue\n' +
+        '                                    laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus auctor\n' +
+        '                                    fringilla. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Sed\n' +
+        '                                    posuere consectetur est at lobortis.\n' +
+        '                                </div>\n' +
+        '                            </li>\n' +
+        '                            <li class="rv">\n' +
+        '                                <img\n' +
+        '                                        class="bos vb yb aff"\n' +
+        '                                        src="/views/static/img/avatar-mdo.png">\n' +
+        '                                <div class="rw">\n' +
+        '                                    <strong>Mark Otto: </strong>\n' +
+        '                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dapibus, tellus ac\n' +
+        '                                    cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet\n' +
+        '                                    risus.\n' +
+        '                                </div>\n' +
+        '                            </li>\n' +
+        '                        </ul>\n' +*/
+        '                    </div>\n' +
+        '                </li>');
