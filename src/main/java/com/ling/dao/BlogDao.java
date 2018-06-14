@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,8 +24,11 @@ public interface BlogDao {
     @MapKey("blog_id")
     Map<Integer,Blog> getBlogByEmail(@Param("user_email")String user_email, @Param("m")int m);
 
-/*    @MapKey("blog_id")
-    Map<Integer,Blog> getByemail(@Param("user_email")String user_email);*/
+    /**
+     * @param m
+     * @return List
+     */
+    List<Blog> getAllBlog(@Param("m") int m);
     /**
      * @param blog_content
      * @param blog_picture

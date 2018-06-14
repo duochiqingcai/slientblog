@@ -16,6 +16,7 @@
     <link href="/views/static/css/bootstrap.min.css" rel="stylesheet">
     <link href="/views/static/css/toolkit.css" rel="stylesheet">
     <link href="/views/static/css/application.css" rel="stylesheet">
+    <link href="/views/static/css/homepage.css" rel="stylesheet">
     <style>
         /* note: this is a hack for ios iframe for bootstrap themes shopify page */
         /* this chunk of css is not part of the toolkit :) */
@@ -103,7 +104,7 @@
             <li class="pi"><a class="pg" href="http://localhost:8080/views/signup.html">注&emsp;&emsp;册</a></li>
             <li class="pi"><a class="pg" href="http://localhost:8080/views/signin.html">登&emsp;&emsp;录</a></li>
             <li class="pi"><a class="pg" href="#" data-action="growl">个人资料</a></li>
-            <li class="pi"><a class="pg" href="javascript:logout()">退&emsp;&emsp;出</a></li>
+            <li class="pi"><a class="pg" href="javascript:void(0)" onclick="logout()">退&emsp;&emsp;出</a></li>
         </ul>
     </div>
 </nav>
@@ -422,7 +423,7 @@
 </div>
 
 
-<div class="by aha ahl">
+<div class="by aha ahl" style="padding-bottom: 0px">
     <div class="dp">
         <div class="fj">
             <div class="pz bpi afo">
@@ -526,7 +527,7 @@
                 </div>
 
                 <div class="rv b agz">
-                    <img class="bos vb yb aff" src="/views/static/img/avatar-dhg_1.png">
+                    <!--<img class="bos vb yb aff" src="/views/static/img/avatar-dhg_1.png">-->
                     <div class="rw">
                         <div class="bpb">
                             <small class="acx axc">4 min</small>
@@ -597,8 +598,23 @@
                     </div>
                 </div>
             </div>
+            <div style="text-align: center">
+                <ul class="blog-pagination" style="margin-top: 0">
+                    <li><a href="#">&laquo;</a></li>
+                    <li><a href="javascript:void(0)" onclick="">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">6</a></li>
+                    <li><a href="#">7</a></li>
+                    <li><a href="#">&raquo;</a></li>
+                </ul>
+            </div>
         </div>
     </div>
+
+
 </div>
 
 

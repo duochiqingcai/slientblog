@@ -11,6 +11,47 @@ $(document).ready(function getBlog() {
 
     console.log(data);
     $.ajax({
+        url:'/getallblog',
+        async:true,
+        type:'POST',
+        data:{'m':0},
+        success:function (data) {
+            console.log(data);
+            $.each(data,function (key,value) {
+                console.log(value);
+                if ((value.blog_picture)!=null){
+                    $('.editTool').after('<div class="rv b agz">\n' +
+                        /*'                    <img class="bos vb yb aff" src="/views/static/img/avatar-dhg_1.png">\n' +*/
+                        '                    <div class="rw">\n' +
+                        '                        <div class="bpb">\n' +
+                        '                            <small class="acx axc">'+value.blog_time+'</small>\n' +
+                        '                            <h6>一个小码农</h6>\n' +
+                        '                        </div>\n' +
+                        '<p>'+value.blog_content+'</p>\n'+
+                        '<img src='+imgurl+'>\n'+
+                        '                    </div>\n' +
+                        '                </div>');
+                }else{
+                    $('.editTool').after('<div class="rv b agz">\n' +
+                       /* '                    <img class="bos vb yb aff" src="/views/static/img/avatar-dhg_1.png">\n' +*/
+                        '                    <div class="rw">\n' +
+                        '                        <div class="bpb">\n' +
+                        '                            <small class="acx axc">'+value.blog_time+'</small>\n' +
+                        '                            <h6>一个小码农</h6>\n' +
+                        '                        </div>\n' +
+                        '<p>'+value.blog_content+'</p>\n'+
+                        '                    </div>\n' +
+                        '                </div>');
+                }
+
+            })
+        },
+        error:function () {
+            console.log('请求失败');
+        },
+        dataType:'json'
+    })
+    /*$.ajax({
         url:'/getblog',
         async:true,
         type:'POST',
@@ -37,15 +78,15 @@ $(document).ready(function getBlog() {
             console.log('请求失败');
         },
         dataType:'json'
-    })
+    })*/
 });
 
 /*退出账户*/
-function logoutt() {
+function logout() {
     alert('tuichu');
     console.log('进入退出方法');
     $.ajax({
-        url: '/logoutt',
+        url: '/logout',
         async: true,
         success: function (data) {
             sessionStorage.clear();

@@ -2,12 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ling.dao.BlogDao">
-    <select id="getByemail" parameterType="String" resultType="com.ling.pojo.Blog">
-        select blog_id,blog_content,blog_picture,blog_time
-        from blog
-        where user_email=#{user_email}
-        order by blog_time;
-    </select>
 <!--    <resultMap id="blogMap" type="com.ling.pojo.Blog">
         <id property="id" column="blog_id"/>
         <result property="email" column="blog_email"/>
@@ -23,8 +17,13 @@
         from blog where user_email=#{user_email}
         order by blog_time limit #{m},10;
     </select>
-
-    <!--2.更新用户博客内容-->
+    <!--2.分页获取博客信息，按时间排序-->
+    <select id="getAllBlog" resultType="com.ling.pojo.Blog">
+        select blog_id,blog_content,blog_picture,blog_time
+        from blog
+        order by blog_time limit #{m},10;
+    </select>
+    <!--3.更新用户博客内容-->
     <insert id="updateBlog" parameterType="String">
         insert into blog(blog_content,blog_picture,blog_time) values(#{blog_content},#{blog_picture},#{blog_time}) ;
     </insert>

@@ -7,6 +7,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -24,6 +25,12 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Map<Integer,Blog> getBlog(String email, int m) {
         return blogDao.getBlogByEmail(email,m);
+    }
+
+    @Cacheable(value = "AllBlog",key = "'Page'+#m.toString()")
+    @Override
+    public List<Blog> getAllBlog(int m) {
+        return blogDao.getAllBlog(m);
     }
 
     @Override

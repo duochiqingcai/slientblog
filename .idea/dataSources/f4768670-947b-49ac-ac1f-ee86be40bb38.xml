@@ -950,158 +950,158 @@
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="245" parent="235" name="blog_title">
+    <column id="245" parent="235" name="blog_content">
       <Position>3</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="246" parent="235" name="blog_content">
-      <Position>4</Position>
       <DataType>longtext|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="247" parent="235" name="blog_picture">
-      <Position>5</Position>
+    <column id="246" parent="235" name="blog_picture">
+      <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="248" parent="235" name="blog_time">
-      <Position>6</Position>
+    <column id="247" parent="235" name="blog_time">
+      <Position>5</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="249" parent="235" name="blog_description">
-      <Position>7</Position>
+    <column id="248" parent="235" name="blog_description">
+      <Position>6</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="250" parent="235" name="user_email_index">
+    <index id="249" parent="235" name="user_email_index">
       <ColNames>user_email</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="251" parent="235" name="PRIMARY">
+    <key id="250" parent="235" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>blog_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="252" parent="236" name="catagory_id">
+    <column id="251" parent="236" name="catagory_id">
       <Position>1</Position>
       <DataType>int(8)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="253" parent="236" name="catagory_name">
+    <column id="252" parent="236" name="catagory_name">
       <Position>2</Position>
       <Comment>按时间分类</Comment>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="254" parent="236" name="PRIMARY">
+    <key id="253" parent="236" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>catagory_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="255" parent="237" name="comment_id">
+    <column id="254" parent="237" name="comment_id">
       <Position>1</Position>
       <DataType>int(8)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="256" parent="237" name="user_id">
+    <column id="255" parent="237" name="user_id">
       <Position>2</Position>
       <DataType>int(8)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="257" parent="237" name="blog_id">
+    <column id="256" parent="237" name="blog_id">
       <Position>3</Position>
       <DataType>int(8)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="258" parent="237" name="comment_content">
+    <column id="257" parent="237" name="comment_content">
       <Position>4</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="259" parent="237" name="comment_time">
+    <column id="258" parent="237" name="comment_time">
       <Position>5</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="260" parent="237" name="PRIMARY">
+    <key id="259" parent="237" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>comment_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="261" parent="238" name="notice_id">
+    <column id="260" parent="238" name="notice_id">
       <Position>1</Position>
       <DataType>int(8)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="262" parent="238" name="send_id">
+    <column id="261" parent="238" name="send_id">
       <Position>2</Position>
       <DataType>int(8)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="263" parent="238" name="send_user_name">
+    <column id="262" parent="238" name="send_user_name">
       <Position>3</Position>
       <DataType>varchar(16)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="264" parent="238" name="notice_content">
+    <column id="263" parent="238" name="notice_content">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="265" parent="238" name="notice_time">
+    <column id="264" parent="238" name="notice_time">
       <Position>5</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="266" parent="238" name="notice_number">
+    <column id="265" parent="238" name="notice_number">
       <Position>6</Position>
       <DataType>int(32)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="267" parent="238" name="PRIMARY">
+    <key id="266" parent="238" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>notice_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="268" parent="239" name="user_id">
+    <column id="267" parent="239" name="user_id">
       <Position>1</Position>
       <DataType>int(8)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="269" parent="239" name="user_name">
+    <column id="268" parent="239" name="user_name">
       <Position>2</Position>
       <Comment>唯一约束</Comment>
       <DataType>varchar(32)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="270" parent="239" name="user_pwd">
+    <column id="269" parent="239" name="user_pwd">
       <Position>3</Position>
       <DataType>varchar(32)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="271" parent="239" name="user_email">
+    <column id="270" parent="239" name="user_email">
       <Position>4</Position>
       <Comment>唯一约束</Comment>
       <DataType>varchar(32)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="272" parent="239" name="user_status">
+    <column id="271" parent="239" name="user_photo">
       <Position>5</Position>
+      <DataType>varchar(32)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="272" parent="239" name="user_status">
+      <Position>6</Position>
       <DataType>tinyint(8)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>

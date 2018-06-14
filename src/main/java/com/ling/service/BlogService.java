@@ -3,6 +3,7 @@ package com.ling.service;
 import com.ling.pojo.Blog;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -13,6 +14,8 @@ import java.util.Map;
  */
 public interface BlogService {
     Map<Integer,Blog> getBlog(String email, int m);
+
+    List<Blog> getAllBlog(int m);
 
     void AddBlog(String blog_content,String blog_picture,String blog_time);
 }

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -28,12 +30,18 @@ public class GetBlogController {
     @Resource
     private BlogService blogService;
 
-
+    //按用户邮箱，获取用户担任博客信息
     @PostMapping("/getblog")
     @ResponseBody
-    public Map<Integer, Blog> getBlog(@RequestParam("user_email")String user_email,@RequestParam("m")int m){
+    public Map<Integer, Blog> getBlog(@RequestParam("user_email")String user_email,@RequestParam("m")Integer m){
         System.out.println(user_email+m);
         return blogService.getBlog(user_email,m);
     }
 
+    //获取全部用户博客信息
+    @PostMapping("/getallblog")
+    @ResponseBody
+    public ArrayList<Blog> getAllBlog(@RequestParam("m")Integer m){
+        return (ArrayList<Blog>) blogService.getAllBlog(m);
+    }
 }

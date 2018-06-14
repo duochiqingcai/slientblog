@@ -162,7 +162,7 @@ public class LoginController implements Serializable {
             return map;
         }
     }
-    @GetMapping("/logoutt")
+    @GetMapping("/logout")
     @ResponseBody
     public Map<String,Object> logoutt(){
         System.out.println("退出登录");

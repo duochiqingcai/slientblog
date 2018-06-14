@@ -21,7 +21,7 @@ $(document).on("click", ".js-msgGroup", function () {
             if (sessionStorage.getItem('username')) {
                 return '<ul class="nav nav-pills nav-stacked flex-column" style="width: 78px">' +
                     '<li class="pi"><a class="pg" href="#" data-action="growl">个人资料</a></li>\n' +
-                    '<li class="pi"><a class="pg" href="javascript:logoutt()">退&emsp;&emsp;出</a></li>' + "</ul>"
+                    '<li class="pi"><a class="pg" href="javascript:void(0)" onclick="logout();return false;">退&emsp;&emsp;出</a></li>' + "</ul>"
             }else return '<ul class="nav nav-pills nav-stacked flex-column" style="width: 78px">' + o.html() + "</ul>"
         }
     }), $('[data-toggle="popover"]').on("click", function (o) {

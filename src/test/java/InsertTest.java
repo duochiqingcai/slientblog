@@ -12,7 +12,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,11 +35,14 @@ public class InsertTest {
     public void insertT() {
         try {
             /*userDao.insertUser("san1","72b5009d20df160619688bd4c91ce637","2816924118@qq.com");*/
-            HashMap<Integer,Blog> map=(HashMap<Integer, Blog>) blogService.getBlog("fdfd4118@qq.com",0);
-            for(Blog blog:map.values()){
+            ArrayList<Blog> list=(ArrayList<Blog>) blogService.getAllBlog(0);
+            for (Blog blog:list){
                 System.out.println(blog.getBlog_content());
-            };
-            System.out.println(map);
+            }
+            /*for(Blog blog:map.values()){
+                System.out.println(blog.getBlog_content());
+            };*/
+            System.out.println(list);
         }catch (DuplicateKeyException e){
             System.out.println("已存在");
         }
