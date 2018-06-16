@@ -31,9 +31,9 @@ public interface BlogDao {
     List<Blog> getAllBlog(@Param("m") int m);
     /**
      * @param blog_content
-     * @param blog_picture
+     * @param user_email
      * @param blog_time
      */
-    void updateBlog(@Param("blog_content")String blog_content,@Param("blog_picture")String blog_picture,
+    void addBlog(@Param("user_email")String user_email,@Param("blog_author")String blog_author,@Param("blog_content")String blog_content,
                     @Param("blog_time")String blog_time);
 }

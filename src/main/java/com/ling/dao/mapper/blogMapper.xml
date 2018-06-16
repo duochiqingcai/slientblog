@@ -13,18 +13,18 @@
 
     <!--1.根据用户邮箱，查询用户博客信息-->
     <select id="getBlogByEmail" resultType="com.ling.pojo.Blog">
-        select blog_id,blog_content,blog_picture,blog_time
+        select blog_author,blog_content,blog_time
         from blog where user_email=#{user_email}
         order by blog_time limit #{m},10;
     </select>
     <!--2.分页获取博客信息，按时间排序-->
     <select id="getAllBlog" resultType="com.ling.pojo.Blog">
-        select blog_id,blog_content,blog_picture,blog_time
+        select blog_author,blog_content,blog_picture,blog_time
         from blog
         order by blog_time limit #{m},10;
     </select>
-    <!--3.更新用户博客内容-->
-    <insert id="updateBlog" parameterType="String">
-        insert into blog(blog_content,blog_picture,blog_time) values(#{blog_content},#{blog_picture},#{blog_time}) ;
+    <!--3.新增用户博客内容-->
+    <insert id="addBlog" parameterType="String">
+        insert into blog(user_email,blog_author,blog_content,blog_time) values(#{user_email},#{blog_author},#{blog_content},#{blog_time}) ;
     </insert>
 </mapper>

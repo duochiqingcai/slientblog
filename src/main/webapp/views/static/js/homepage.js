@@ -1,84 +1,65 @@
 $(document).ready(function getBlog() {
     console.log('获取博客信息');
 
-/*    if(sessionStorage.getItem('username')){
-        $('.hideli').hide();
-    }*/
+    /*    if(sessionStorage.getItem('username')){
+            $('.hideli').hide();
+        }*/
 
-    var user_email=sessionStorage.getItem('email');
-    var data={'user_email':user_email,'m':0};
-    var imgurl='http://pa1hj9wpk.bkt.clouddn.com/1.jpg';
+    var user_email = sessionStorage.getItem('email');
+    var data = {'user_email': user_email, 'm': 0};
+    var imgurl = 'http://pa1hj9wpk.bkt.clouddn.com/1.jpg';
 
     console.log(data);
     $.ajax({
-        url:'/getallblog',
-        async:true,
-        type:'POST',
-        data:{'m':0},
-        success:function (data) {
+        url: '/getallblog',
+        async: true,
+        type: 'POST',
+        data: {'m': 0},
+        success: function (data) {
             console.log(data);
-            $.each(data,function (key,value) {
+            $(function () {
+                $('#user_name').text(sessionStorage.getItem('username'));
+                $('#user_email').text(user_email);
+                $('#user_qq').text(sessionStorage.getItem('user_qq'));
+                $('#user_address').text(sessionStorage.getItem('user_address'));
+                $('#user_github').text(sessionStorage.getItem('user_github'));
+            });
+
+            $.each(data, function (key, value) {
                 console.log(value);
-                if ((value.blog_picture)!=null){
+                if ((value.blog_picture) != null) {
                     $('.editTool').after('<div class="rv b agz">\n' +
-                        /*'                    <img class="bos vb yb aff" src="/views/static/img/avatar-dhg_1.png">\n' +*/
+                        '                    <img class="bos vb yb aff" src="/views/static/img/avatar-dhg_1.png">\n' +
                         '                    <div class="rw">\n' +
                         '                        <div class="bpb">\n' +
-                        '                            <small class="acx axc">'+value.blog_time+'</small>\n' +
-                        '                            <h6>一个小码农</h6>\n' +
+                        '                            <small class="acx axc">' + value.blog_time + '</small>\n' +
+                        '                            <h6>'+value.blog_author+'</h6>\n' +
                         '                        </div>\n' +
-                        '<p>'+value.blog_content+'</p>\n'+
-                        '<img src='+imgurl+'>\n'+
+                        '<p>' + value.blog_content + '</p>\n' +
+                        '<img src=' + imgurl + '>\n' +
+
                         '                    </div>\n' +
                         '                </div>');
-                }else{
+                } else {
                     $('.editTool').after('<div class="rv b agz">\n' +
-                       /* '                    <img class="bos vb yb aff" src="/views/static/img/avatar-dhg_1.png">\n' +*/
+                        '                    <img class="bos vb yb aff" src="/views/static/img/avatar-dhg_1.png">\n' +
                         '                    <div class="rw">\n' +
                         '                        <div class="bpb">\n' +
-                        '                            <small class="acx axc">'+value.blog_time+'</small>\n' +
-                        '                            <h6>一个小码农</h6>\n' +
+                        '                            <small class="acx axc">' + value.blog_time + '</small>\n' +
+                        '                            <h6>'+value.blog_author+'</h6>\n' +
                         '                        </div>\n' +
-                        '<p>'+value.blog_content+'</p>\n'+
+                        '<p>' + value.blog_content + '</p>\n' +
                         '                    </div>\n' +
                         '                </div>');
                 }
 
             })
         },
-        error:function () {
+        error: function () {
             console.log('请求失败');
         },
-        dataType:'json'
+        dataType: 'json'
     })
-    /*$.ajax({
-        url:'/getblog',
-        async:true,
-        type:'POST',
-        data:data,
-        success:function (data) {
-            console.log(data);
-            $.map(data,function (value,key) {
-                console.log(value);
-                $('.editTool').after('<div class="rv b agz">\n' +
-                    '                    <img class="bos vb yb aff" src="/views/static/img/avatar-dhg_1.png">\n' +
-                    '                    <div class="rw">\n' +
-                    '                        <div class="bpb">\n' +
-                    '                            <small class="acx axc">'+value.blog_time+'</small>\n' +
-                    '                            <h6>一个小码农</h6>\n' +
-                    '                        </div>\n' +
-                    '<p>'+value.blog_content+'</p>\n'+
-
-                    '<img src='+imgurl+'>\n'+
-                    '                    </div>\n' +
-                    '                </div>');
-            })
-        },
-        error:function () {
-            console.log('请求失败');
-        },
-        dataType:'json'
-    })*/
 });
 
 /*退出账户*/
@@ -98,6 +79,7 @@ function logout() {
         dataType: 'json'
     })
 }
+
 // 初始化七牛上传的方法
 function uploadInit() {
     var btnId = editor.imgMenuId;
@@ -108,7 +90,7 @@ function uploadInit() {
     var uploader = Qiniu.uploader({
         runtimes: 'html5,flash,html4',    //上传模式,依次退化
         browse_button: btnId,       //上传选择的点选按钮，**必需**
-        uptoken_url:'/uptoken',    //获取uptoken
+        uptoken_url: '/uptoken',    //获取uptoken
         //uptoken: 'npYadwnTPCi7Ik5T4YcR_j9ozf_C4jCWJTx6hxuf:aqcXRjx4qhxQfHeJxq9Fcst7U04=:eyJzY29wZSI6InNpbXBsZS1ibG9nIiwiZGVhZGxpbmUiOjE1Mjg3Mzg2NDl9',
         //Ajax请求upToken的Url，**强烈建议设置**（服务端提供）
         // uptoken : '<Your upload token>',
@@ -197,8 +179,39 @@ function printLog(title, info) {
 
 /*发布文章*/
 function publish() {
-    /*uploadInit();*/
-    alert("开始发布");
-    console.log(editor.txt.html());
+    if (sessionStorage.getItem('email') != null) {
+            alert("开始发布");
+            console.log(editor.txt.html());
+            var user_email = sessionStorage.getItem('email');
+            var user_name=sessionStorage.getItem('username');
+            var blog = editor.txt.html();
+            var upTime = getNowFormatDate();
+            console.log(user_name);
+            //首先发布至页面
+            var addBlogData = {'user_email': user_email,'blog_author':user_name,'blog_content': blog, 'blog_time': upTime};
+            console.log(addBlogData);
+            //将博客信息存入数据库
+            $.ajax({
+                url: '/addblog',
+                async: true,
+                type: 'POST',
+                data: addBlogData
+            });
+            //博客展示在页面
+            $('.editTool').after('<div class="rv b agz">\n' +
+                '                    <img class="bos vb yb aff" src="/views/static/img/avatar-dhg_1.png">\n' +
+                '                    <div class="rw" style="max-width:774.5px">\n' +
+                '                        <div class="bpb">\n' +
+                '                            <small class="acx axc">' + upTime + '</small>\n' +
+                '                            <h6>'+user_name+'</h6>\n' +
+                '                        </div>\n' +
+                editor.txt.html() +
+                '                    </div>\n' +
+                '                </div>');
+
+            editor.txt.clear();
+    }else{
+        alert('请登录账户！')
+    }
 
 }

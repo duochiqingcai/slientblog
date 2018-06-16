@@ -3,6 +3,7 @@ package com.ling.service.impl;
 import com.ling.dao.BlogDao;
 import com.ling.pojo.Blog;
 import com.ling.service.BlogService;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -33,8 +34,9 @@ public class BlogServiceImpl implements BlogService {
         return blogDao.getAllBlog(m);
     }
 
+    @CacheEvict(value = {"BlogInfo","AllBlog"},allEntries = true)
     @Override
-    public void AddBlog(String blog_content, String blog_picture, String blog_time) {
-        blogDao.updateBlog(blog_content,blog_picture,blog_time);
+    public void addBlog(String user_email, String blog_author,String blog_content, String blog_time) {
+        blogDao.addBlog(user_email,blog_author,blog_content,blog_time);
     }
 }

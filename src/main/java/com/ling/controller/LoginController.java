@@ -1,10 +1,11 @@
 package com.ling.controller;
 
 import com.ling.dao.UserDao;
+import com.ling.dto.UserDto;
 import com.ling.pojo.Mail;
 import com.ling.pojo.User;
-import com.ling.service.LoginService;
 import com.ling.service.MailService;
+import com.ling.service.impl.UserDaoImpl;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -39,19 +40,18 @@ import java.util.Map;
 @Controller
 public class LoginController implements Serializable {
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
-    @Resource
-    private UserDao userDao;
+
     @Resource
     private MailService mailService;
     @Resource
-    private LoginService loginService;
+    private UserDaoImpl userDaoImpl;
 
-    @GetMapping("/test")
+/*    @GetMapping("/test")
     @ResponseBody
     public User test(){
         User user=userDao.getUserByEmail("2816924118@qq.com");
         return user;
-    }
+    }*/
 
     /**
      * @param username
@@ -68,7 +68,7 @@ public class LoginController implements Serializable {
         //注册用户信息至数据库
 
         try {
-            userDao.insertUser(username, DigestUtils.md5DigestAsHex(password.getBytes()), email);
+            userDaoImpl.insertUser(username, DigestUtils.md5DigestAsHex(password.getBytes()), email);
         } catch (DuplicateKeyException e) {
             System.out.println("已存在");
             Map<String, Object> map = new HashMap<>();
@@ -145,9 +145,7 @@ public class LoginController implements Serializable {
         System.out.println("进入Login");
         logger.info("用户名：" + email + "密码：" + password);
         Map<String, Object> map = new HashMap<>();
-        User user=loginService.getUser(email);
-
-        System.out.println(user.getUser_pwd());
+        UserDto user =userDaoImpl.getUserByEmail(email);
 
         if (DigestUtils.md5DigestAsHex(password.getBytes()).equals(user.getUser_pwd())){
             System.out.println("一样");
@@ -155,6 +153,9 @@ public class LoginController implements Serializable {
             session.getMaxInactiveInterval();
             map.put("email",email);
             map.put("username",user.getUser_name());
+            map.put("user_qq",user.getUser_qq());
+            map.put("user_github",user.getUser_github());
+            map.put("user_address",user.getUser_address());
             return map;
         }else {
             System.out.println("不一样");
@@ -162,6 +163,8 @@ public class LoginController implements Serializable {
             return map;
         }
     }
+
+
     @GetMapping("/logout")
     @ResponseBody
     public Map<String,Object> logoutt(){

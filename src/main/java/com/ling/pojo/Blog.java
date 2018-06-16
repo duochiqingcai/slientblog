@@ -11,6 +11,7 @@ import java.io.Serializable;
 public class Blog implements Serializable {
     private Integer blog_id;
     private String user_email;
+    private String blog_author;
     private String blog_content;
     private String blog_picture;
     private String blog_time;
@@ -30,6 +31,14 @@ public class Blog implements Serializable {
 
     public void setUser_email(String user_email) {
         this.user_email = user_email;
+    }
+
+    public String getBlog_author() {
+        return blog_author;
+    }
+
+    public void setBlog_author(String blog_author) {
+        this.blog_author = blog_author;
     }
 
     public String getBlog_content() {

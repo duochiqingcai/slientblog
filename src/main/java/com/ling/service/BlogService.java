@@ -17,5 +17,5 @@ public interface BlogService {
 
     List<Blog> getAllBlog(int m);
 
-    void AddBlog(String blog_content,String blog_picture,String blog_time);
+    void addBlog(String user_email, String blog_author,String blog_content, String blog_time);
 }

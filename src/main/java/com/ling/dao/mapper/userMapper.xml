@@ -3,11 +3,22 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ling.dao.UserDao">
     <!--1.登录查询，根据用户名查询用户信息-->
-    <select id="getUserByEmail" parameterType="String" resultType="com.ling.pojo.User">
-        select user_name,user_email,user_pwd from user where user_email=#{email};
+    <select id="getUserByEmail" parameterType="String" resultType="com.ling.dto.UserDto">
+        select
+            user.user_email,
+            user.user_name,
+            user.user_pwd,
+            userinfo.user_qq,
+            userinfo.user_github,
+            userinfo.user_address
+        from user
+            left join userinfo
+                on user.user_email = userinfo.user_email
+        where user.user_email = #{email};
     </select>
+
     <!--2.注册，根据输入，想用户表中插入用户名和密码、邮箱信息-->
     <insert id="insertUser" parameterType="String">
-        insert into user(user_name,user_pwd,user_email) values(#{username},#{password},#{email}) ;
+        insert into user (user_name, user_pwd, user_email) values (#{username}, #{password}, #{email});
     </insert>
 </mapper>

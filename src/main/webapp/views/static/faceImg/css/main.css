@@ -4,14 +4,25 @@ body {
 
 .avatar-view {
   display: block;
-  margin: 15% auto 5%;
-  height: 220px;
-  width: 220px;
+  max-width: 100px;
+  margin-top: -70px;
+  margin-left: 75px;
+  height: 100px;
+  width: 100px;
   border: 2px solid #369fc2;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0,0,0,.15);
   cursor: pointer;
   overflow: hidden;
+/*  display: block;
+  margin: 15% auto 5%;
+  height: 100px;
+  width: 100px;
+  border: 2px solid #369fc2;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0,0,0,.15);
+  cursor: pointer;
+  overflow: hidden;*/
 }
 
 .avatar-view img {
