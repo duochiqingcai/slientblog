@@ -29,7 +29,6 @@ $(document).ready(function getBlog() {
                 console.log(value);
                 if ((value.blog_picture) != null) {
                     $('.editTool').after('<div class="rv b agz">\n' +
-                        '                    <img class="bos vb yb aff" src="/views/static/img/avatar-dhg_1.png">\n' +
                         '                    <div class="rw">\n' +
                         '                        <div class="bpb">\n' +
                         '                            <small class="acx axc">' + value.blog_time + '</small>\n' +
@@ -42,7 +41,6 @@ $(document).ready(function getBlog() {
                         '                </div>');
                 } else {
                     $('.editTool').after('<div class="rv b agz">\n' +
-                        '                    <img class="bos vb yb aff" src="/views/static/img/avatar-dhg_1.png">\n' +
                         '                    <div class="rw">\n' +
                         '                        <div class="bpb">\n' +
                         '                            <small class="acx axc">' + value.blog_time + '</small>\n' +
@@ -64,7 +62,6 @@ $(document).ready(function getBlog() {
 
 /*退出账户*/
 function logout() {
-    alert('tuichu');
     console.log('进入退出方法');
     $.ajax({
         url: '/logout',
@@ -72,12 +69,51 @@ function logout() {
         success: function (data) {
             sessionStorage.clear();
             alert('退出账户');
+            window.location.href = "http://localhost:8080/";
         },
         error: function () {
             console.log('退出失败');
         },
         dataType: 'json'
     })
+}
+
+/*发布文章*/
+function publish() {
+    if (sessionStorage.getItem('email') != null) {
+            alert("开始发布");
+            console.log(editor.txt.html());
+            var user_email = sessionStorage.getItem('email');
+            var user_name=sessionStorage.getItem('username');
+            var blog = editor.txt.html();
+            var upTime = getNowFormatDate();
+            console.log(user_name);
+            //首先发布至页面
+            var addBlogData = {'user_email': user_email,'blog_author':user_name,'blog_content': blog, 'blog_time': upTime};
+            console.log(addBlogData);
+            //将博客信息存入数据库
+            $.ajax({
+                url: '/addblog',
+                async: true,
+                type: 'POST',
+                data: addBlogData
+            });
+            //博客展示在页面
+            $('.editTool').after('<div class="rv b agz">\n' +
+                '                    <div class="rw" style="max-width:774.5px">\n' +
+                '                        <div class="bpb">\n' +
+                '                            <small class="acx axc">' + upTime + '</small>\n' +
+                '                            <h6>'+user_name+'</h6>\n' +
+                '                        </div>\n' +
+                editor.txt.html() +
+                '                    </div>\n' +
+                '                </div>');
+
+            editor.txt.clear();
+    }else{
+        alert('请登录账户！')
+    }
+
 }
 
 // 初始化七牛上传的方法
@@ -175,43 +211,4 @@ function uploadInit() {
 // 封装 console.log 函数
 function printLog(title, info) {
     window.console && console.log(title, info);
-}
-
-/*发布文章*/
-function publish() {
-    if (sessionStorage.getItem('email') != null) {
-            alert("开始发布");
-            console.log(editor.txt.html());
-            var user_email = sessionStorage.getItem('email');
-            var user_name=sessionStorage.getItem('username');
-            var blog = editor.txt.html();
-            var upTime = getNowFormatDate();
-            console.log(user_name);
-            //首先发布至页面
-            var addBlogData = {'user_email': user_email,'blog_author':user_name,'blog_content': blog, 'blog_time': upTime};
-            console.log(addBlogData);
-            //将博客信息存入数据库
-            $.ajax({
-                url: '/addblog',
-                async: true,
-                type: 'POST',
-                data: addBlogData
-            });
-            //博客展示在页面
-            $('.editTool').after('<div class="rv b agz">\n' +
-                '                    <img class="bos vb yb aff" src="/views/static/img/avatar-dhg_1.png">\n' +
-                '                    <div class="rw" style="max-width:774.5px">\n' +
-                '                        <div class="bpb">\n' +
-                '                            <small class="acx axc">' + upTime + '</small>\n' +
-                '                            <h6>'+user_name+'</h6>\n' +
-                '                        </div>\n' +
-                editor.txt.html() +
-                '                    </div>\n' +
-                '                </div>');
-
-            editor.txt.clear();
-    }else{
-        alert('请登录账户！')
-    }
-
 }

@@ -34,7 +34,7 @@ function signup() {
             } else {
                 sessionStorage.setItem('username', data.username);
                 sessionStorage.setItem('email', data.email);
-                window.location.href = "http://localhost:8080/views/homepage.html";
+                window.location.href = "http://localhost:8080/";
             }
         },
         error: function () {
@@ -72,7 +72,7 @@ function signin() {
                     sessionStorage.setItem('user_github', data.user_github);
                     sessionStorage.setItem('user_address', data.user_address);
                     /*$(location).attr('href', 'http://localhost:8080/views/homepage.html');*/
-                    window.location.href = "http://localhost:8080/views/homepage.html";
+                    window.location.href = "http://localhost:8080/";
                 }
 
             },
