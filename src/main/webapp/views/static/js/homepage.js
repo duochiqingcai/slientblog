@@ -8,7 +8,17 @@ $(document).ready(function getBlog() {
     var user_email = sessionStorage.getItem('email');
     var data = {'user_email': user_email, 'm': 0};
     var imgurl = 'http://pa1hj9wpk.bkt.clouddn.com/1.jpg';
-
+    //定义博客正文及评论模板
+    /*var templet='<div class="rv b agz">\n' +
+        '                    <div class="rw">\n' +
+        '                        <div class="bpb">\n' +
+        '                            <small class="acx axc">' + values.blog_time + '</small>\n' +
+        '                            <h6>' + values.blog_author + '</h6>\n' +
+        '                        </div>\n' +
+        '                        <div class="blog_body">'+
+        '                           '*/
+        
+        
     console.log(data);
     $.ajax({
         url: '/getallblog',
@@ -25,40 +35,136 @@ $(document).ready(function getBlog() {
                 $('#user_github').text(sessionStorage.getItem('user_github'));
             });
 
-            $.each(data, function (key, value) {
-                console.log(value);
-                if ((value.blog_picture) != null) {
+            $.each(data, function (key, values) {
+                console.log(values);
+                if ((values.blog_picture) != null) {
                     $('.editTool').after('<div class="rv b agz">\n' +
-                        '                    <div class="rw">\n' +
-                        '                        <div class="bpb">\n' +
-                        '                            <small class="acx axc">' + value.blog_time + '</small>\n' +
-                        '                            <h6>'+value.blog_author+'</h6>\n' +
+                        '                    <div class="rw blog_div" style="max-width:884.5px">\n' +
+                        '                        <div class="bpb blog_header">\n' +
+                        '                            <small class="acx axc">' + values.blog_time + '</small>\n' +
+                        '                            <h6>' + values.blog_author + '</h6>\n' +
                         '                        </div>\n' +
-                        '<p>' + value.blog_content + '</p>\n' +
-                        '<img src=' + imgurl + '>\n' +
-
+                        '                        <div class="blog_body">\n'+
+                        '                           <div class="blog_content">\n'+
+                        values.blog_content +
+                        /*'<img src=' + imgurl + '>\n' +*/
+                        '                           </div>\n'+
+                        '<br>\n'+
+                        '<a class="toggle" href="#"></a>\n'+
+                        '<a href="#" style="float: right" class="pinglun">评论</a>\n'+
+                        '                        </div>\n'+
                         '                    </div>\n' +
                         '                </div>');
                 } else {
                     $('.editTool').after('<div class="rv b agz">\n' +
-                        '                    <div class="rw">\n' +
-                        '                        <div class="bpb">\n' +
-                        '                            <small class="acx axc">' + value.blog_time + '</small>\n' +
-                        '                            <h6>'+value.blog_author+'</h6>\n' +
+                        '                    <div class="rw blog_div" style="max-width:884.5px">\n' +
+                        '                        <div class="bpb blog_header">\n' +
+                        '                            <small class="acx axc">' + values.blog_time + '</small>\n' +
+                        '                            <h6>' + values.blog_author + '</h6>\n' +
                         '                        </div>\n' +
-                        '<p>' + value.blog_content + '</p>\n' +
+                        '                        <div class="blog_body">\n'+
+                        '                           <div class="blog_content">\n'+
+                        values.blog_content +
+                        '                           </div>\n'+
+                        '<br>\n'+
+                        '<a class="toggle" href="#"></a>\n'+
+                        '<a href="#" style="float: right" class="pinglun">评论</a>\n'+
+                        '                        </div>\n'+
                         '                    </div>\n' +
                         '                </div>');
                 }
 
-            })
+            });
+            hidetxt();
+            /*$(function () {
+                /!*
+                    Toggle full story example
+                *!/
+                $('.blog_body').each(function () {
+                    var $xmpl = $(this);
+                    $xmpl.dotdotdot({
+                        // Prevents the <a class="toggle" /> from being removed
+                        keep: '.toggle'
+                    });
+
+                    // Get the dotdotdot API
+                    var api = $xmpl.data('dotdotdot');
+
+                    /!*if ($('.blog_content').height() < 100) {
+                        $('.toggle').hide();
+                        $('.pinglun').hide();
+                    }*!/
+                    $xmpl.on(
+                        'click',
+                        '.toggle',
+                        function (e) {
+                            e.preventDefault();
+
+                            //	When truncated, restore
+                            if ($xmpl.hasClass('ddd-truncated')) {
+                                api.restore();
+                                $xmpl.addClass('full-story');
+                            }
+
+                            //	Not truncated, truncate
+                            else {
+                                $xmpl.removeClass('full-story');
+                                api.truncate();
+                                api.watch();
+                            }
+                        }
+                    );
+                })
+            });*/
         },
         error: function () {
             console.log('请求失败');
         },
         dataType: 'json'
-    })
+    });
 });
+
+//局部显示blog
+/*$(function () {
+    /!*
+        Toggle full story example
+    *!/
+    $('.blog_body').each(function () {
+        var $xmpl = $(this);
+        $xmpl.dotdotdot({
+            // Prevents the <a class="toggle" /> from being removed
+            keep: '.toggle'
+        });
+
+        // Get the dotdotdot API
+        var api = $xmpl.data('dotdotdot');
+
+        /!*if ($('.blog_content').height() < 100) {
+            $('.toggle').hide();
+            $('.pinglun').hide();
+        }*!/
+        $xmpl.on(
+            'click',
+            '.toggle',
+            function (e) {
+                e.preventDefault();
+
+                //	When truncated, restore
+                if ($xmpl.hasClass('ddd-truncated')) {
+                    api.restore();
+                    $xmpl.addClass('full-story');
+                }
+
+                //	Not truncated, truncate
+                else {
+                    $xmpl.removeClass('full-story');
+                    api.truncate();
+                    api.watch();
+                }
+            }
+        );
+    })
+});*/
 
 /*退出账户*/
 function logout() {
@@ -81,41 +187,137 @@ function logout() {
 /*发布文章*/
 function publish() {
     if (sessionStorage.getItem('email') != null) {
-            alert("开始发布");
-            console.log(editor.txt.html());
-            var user_email = sessionStorage.getItem('email');
-            var user_name=sessionStorage.getItem('username');
-            var blog = editor.txt.html();
-            var upTime = getNowFormatDate();
-            console.log(user_name);
-            //首先发布至页面
-            var addBlogData = {'user_email': user_email,'blog_author':user_name,'blog_content': blog, 'blog_time': upTime};
-            console.log(addBlogData);
-            //将博客信息存入数据库
-            $.ajax({
-                url: '/addblog',
-                async: true,
-                type: 'POST',
-                data: addBlogData
-            });
-            //博客展示在页面
-            $('.editTool').after('<div class="rv b agz">\n' +
-                '                    <div class="rw" style="max-width:774.5px">\n' +
-                '                        <div class="bpb">\n' +
-                '                            <small class="acx axc">' + upTime + '</small>\n' +
-                '                            <h6>'+user_name+'</h6>\n' +
-                '                        </div>\n' +
-                editor.txt.html() +
-                '                    </div>\n' +
-                '                </div>');
+        alert("开始发布");
+        console.log(editor.txt.html().length);
+        var user_email = sessionStorage.getItem('email');
+        var user_name = sessionStorage.getItem('username');
+        var blog = editor.txt.html();
+        var upTime = getNowFormatDate();
+        console.log(user_name);
 
-            editor.txt.clear();
-    }else{
+        //首先发布至页面
+        var addBlogData = {
+            'user_email': user_email,
+            'blog_author': user_name,
+            'blog_content': blog,
+            'blog_time': upTime
+        };
+        console.log(addBlogData);
+        //将博客信息存入数据库
+        $.ajax({
+            url: '/addblog',
+            async: true,
+            type: 'POST',
+            data: addBlogData
+        });
+        //博客展示在页面
+
+        $('.editTool').after('<div class="rv b agz">\n' +
+            '                    <div class="rw blog_div" style="max-width:884.5px">\n' +
+            '                        <div class="bpb blog_header">\n' +
+            '                            <small class="acx axc">' + upTime + '</small>\n' +
+            '                            <h6>' + user_name + '</h6>\n' +
+            '                        </div>\n' +
+            '                        <div class="blog_body">\n'+
+            '                           <div class="blog_content">\n'+
+            editor.txt.html() +
+            '                           </div>\n'+
+            '<br>\n'+
+            '<a class="toggle" href="#"></a>\n'+
+            '<a href="#" style="float: right" class="pinglun">评论</a>\n'+
+            '                        </div>\n'+
+            '                    </div>\n' +
+            '                </div>');
+        editor.txt.clear();
+        hidetxt();
+        /*$(function () {
+            /!*
+                Toggle full story example
+            *!/
+            $('.blog_body').each(function () {
+                var $xmpl = $(this);
+                $xmpl.dotdotdot({
+                    // Prevents the <a class="toggle" /> from being removed
+                    keep: '.toggle'
+                });
+
+                // Get the dotdotdot API
+                var api = $xmpl.data('dotdotdot');
+
+                /!*if ($('.blog_content').height() < 100) {
+                    $('.toggle').hide();
+                    $('.pinglun').hide();
+                }*!/
+                $xmpl.on(
+                    'click',
+                    '.toggle',
+                    function (e) {
+                        e.preventDefault();
+
+                        //	When truncated, restore
+                        if ($xmpl.hasClass('ddd-truncated')) {
+                            api.restore();
+                            $xmpl.addClass('full-story');
+                        }
+
+                        //	Not truncated, truncate
+                        else {
+                            $xmpl.removeClass('full-story');
+                            api.truncate();
+                            api.watch();
+                        }
+                    }
+                );
+            })
+        });*/
+    } else {
         alert('请登录账户！')
     }
-
 }
 
+//隐藏多余文本
+function hidetxt() {
+    /*
+    Toggle full story example
+*/
+    $('.blog_body').each(function () {
+        var $xmpl = $(this);
+        $xmpl.dotdotdot({
+            // Prevents the <a class="toggle" /> from being removed
+            keep: '.toggle'
+        });
+
+        // Get the dotdotdot API
+        var api = $xmpl.data('dotdotdot');
+
+        $xmpl.on(
+            'click',
+            '.toggle',
+            function (e) {
+                e.preventDefault();
+
+                //	When truncated, restore
+                if ($xmpl.hasClass('ddd-truncated')) {
+                    api.restore();
+                    $xmpl.addClass('full-story');
+                }
+
+                //	Not truncated, truncate
+                else {
+                    $xmpl.removeClass('full-story');
+                    api.truncate();
+                    api.watch();
+                }
+            }
+        );
+    })
+}
+
+//展开/隐藏评论
+function hidecomment() {
+    console.log('评论');
+    $('.blog_comment').removeAttr('hidden');
+}
 // 初始化七牛上传的方法
 function uploadInit() {
     var btnId = editor.imgMenuId;
