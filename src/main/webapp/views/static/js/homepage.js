@@ -1,25 +1,9 @@
 $(document).ready(function getBlog() {
     console.log('获取博客信息');
-
-    /*    if(sessionStorage.getItem('username')){
-            $('.hideli').hide();
-        }*/
-
     var user_email = sessionStorage.getItem('email');
     var data = {'user_email': user_email, 'm': 0};
     var imgurl = 'http://pa1hj9wpk.bkt.clouddn.com/1.jpg';
-    //定义博客正文及评论模板
-    /*var templet='<div class="rv b agz">\n' +
-        '                    <div class="rw">\n' +
-        '                        <div class="bpb">\n' +
-        '                            <small class="acx axc">' + values.blog_time + '</small>\n' +
-        '                            <h6>' + values.blog_author + '</h6>\n' +
-        '                        </div>\n' +
-        '                        <div class="blog_body">'+
-        '                           '*/
-        
-        
-    console.log(data);
+
     $.ajax({
         url: '/getallblog',
         async: true,
@@ -36,86 +20,31 @@ $(document).ready(function getBlog() {
             });
 
             $.each(data, function (key, values) {
-                console.log(values);
-                if ((values.blog_picture) != null) {
-                    $('.editTool').after('<div class="rv b agz">\n' +
-                        '                    <div class="rw blog_div" style="max-width:884.5px">\n' +
-                        '                        <div class="bpb blog_header">\n' +
-                        '                            <small class="acx axc">' + values.blog_time + '</small>\n' +
-                        '                            <h6>' + values.blog_author + '</h6>\n' +
-                        '                        </div>\n' +
-                        '                        <div class="blog_body">\n'+
-                        '                           <div class="blog_content">\n'+
-                        values.blog_content +
-                        /*'<img src=' + imgurl + '>\n' +*/
-                        '                           </div>\n'+
-                        '<br>\n'+
-                        '<a class="toggle" href="#"></a>\n'+
-                        '<a href="#" style="float: right" class="pinglun">评论</a>\n'+
-                        '                        </div>\n'+
-                        '                    </div>\n' +
-                        '                </div>');
-                } else {
-                    $('.editTool').after('<div class="rv b agz">\n' +
-                        '                    <div class="rw blog_div" style="max-width:884.5px">\n' +
-                        '                        <div class="bpb blog_header">\n' +
-                        '                            <small class="acx axc">' + values.blog_time + '</small>\n' +
-                        '                            <h6>' + values.blog_author + '</h6>\n' +
-                        '                        </div>\n' +
-                        '                        <div class="blog_body">\n'+
-                        '                           <div class="blog_content">\n'+
-                        values.blog_content +
-                        '                           </div>\n'+
-                        '<br>\n'+
-                        '<a class="toggle" href="#"></a>\n'+
-                        '<a href="#" style="float: right" class="pinglun">评论</a>\n'+
-                        '                        </div>\n'+
-                        '                    </div>\n' +
-                        '                </div>');
-                }
 
+                    $('.editTool').after('<div class="rv b agz">\n' +
+                        '                    <div class="rw blog_div" style="max-width:884.5px">\n' +
+                        '                        <div class="bpb blog_header">\n' +
+                        '                            <small class="acx axc">' + values.blog_time + '</small>\n' +
+                        '                            <h6>' + values.blog_author + '</h6>\n' +
+                        '                        </div>\n' +
+                        '                        <div class="blog_body">\n' +
+                        '                           <div class="blog_content">\n' +
+                        values.blog_content +
+                        '                           </div>\n' +
+                        '<br>\n' +
+                        '<a class="toggle" href="#"></a>\n' +
+                        '<a href="javascript:void(0)" onclick="showComment()" hidden="hidden" style="float: right" class="commentbtn" id=' + values.blog_id + '>评论</a>\n' +
+                        '<hr style="margin-top: 7px">\n' +
+                        '<div class="blog_comment" style="height: auto">\n' +
+                        '<textarea name="commentarea" cols="100" rows="5" id=textarea'+ values.blog_id+'></textarea>\n' +
+                        '<button style="float: right" onclick="docomment()">发表评论</button>\n' +
+                        '<ul class="bow afa" id=comment' + values.blog_id + '>\n' +
+                        '</ul>\n' +
+                        '                        </div>\n' +
+                        '                    </div>\n' +
+                        '                </div>');
             });
             hidetxt();
-            /*$(function () {
-                /!*
-                    Toggle full story example
-                *!/
-                $('.blog_body').each(function () {
-                    var $xmpl = $(this);
-                    $xmpl.dotdotdot({
-                        // Prevents the <a class="toggle" /> from being removed
-                        keep: '.toggle'
-                    });
-
-                    // Get the dotdotdot API
-                    var api = $xmpl.data('dotdotdot');
-
-                    /!*if ($('.blog_content').height() < 100) {
-                        $('.toggle').hide();
-                        $('.pinglun').hide();
-                    }*!/
-                    $xmpl.on(
-                        'click',
-                        '.toggle',
-                        function (e) {
-                            e.preventDefault();
-
-                            //	When truncated, restore
-                            if ($xmpl.hasClass('ddd-truncated')) {
-                                api.restore();
-                                $xmpl.addClass('full-story');
-                            }
-
-                            //	Not truncated, truncate
-                            else {
-                                $xmpl.removeClass('full-story');
-                                api.truncate();
-                                api.watch();
-                            }
-                        }
-                    );
-                })
-            });*/
         },
         error: function () {
             console.log('请求失败');
@@ -123,48 +52,6 @@ $(document).ready(function getBlog() {
         dataType: 'json'
     });
 });
-
-//局部显示blog
-/*$(function () {
-    /!*
-        Toggle full story example
-    *!/
-    $('.blog_body').each(function () {
-        var $xmpl = $(this);
-        $xmpl.dotdotdot({
-            // Prevents the <a class="toggle" /> from being removed
-            keep: '.toggle'
-        });
-
-        // Get the dotdotdot API
-        var api = $xmpl.data('dotdotdot');
-
-        /!*if ($('.blog_content').height() < 100) {
-            $('.toggle').hide();
-            $('.pinglun').hide();
-        }*!/
-        $xmpl.on(
-            'click',
-            '.toggle',
-            function (e) {
-                e.preventDefault();
-
-                //	When truncated, restore
-                if ($xmpl.hasClass('ddd-truncated')) {
-                    api.restore();
-                    $xmpl.addClass('full-story');
-                }
-
-                //	Not truncated, truncate
-                else {
-                    $xmpl.removeClass('full-story');
-                    api.truncate();
-                    api.watch();
-                }
-            }
-        );
-    })
-});*/
 
 /*退出账户*/
 function logout() {
@@ -218,14 +105,14 @@ function publish() {
             '                            <small class="acx axc">' + upTime + '</small>\n' +
             '                            <h6>' + user_name + '</h6>\n' +
             '                        </div>\n' +
-            '                        <div class="blog_body">\n'+
-            '                           <div class="blog_content">\n'+
+            '                        <div class="blog_body">\n' +
+            '                           <div class="blog_content">\n' +
             editor.txt.html() +
-            '                           </div>\n'+
-            '<br>\n'+
-            '<a class="toggle" href="#"></a>\n'+
-            '<a href="#" style="float: right" class="pinglun">评论</a>\n'+
-            '                        </div>\n'+
+            '                           </div>\n' +
+            '<br>\n' +
+            '<a class="toggle" href="#"></a>\n' +
+            '<a href="#" style="float: right" class="pinglun">评论</a>\n' +
+            '                        </div>\n' +
             '                    </div>\n' +
             '                </div>');
         editor.txt.clear();
@@ -275,7 +162,7 @@ function publish() {
     }
 }
 
-//隐藏多余文本
+//隐藏部分文本/显示全部
 function hidetxt() {
     /*
     Toggle full story example
@@ -313,11 +200,61 @@ function hidetxt() {
     })
 }
 
-//展开/隐藏评论
-function hidecomment() {
-    console.log('评论');
-    $('.blog_comment').removeAttr('hidden');
+//展开评论
+function showComment() {
+
 }
+//发表评论
+function docomment() {
+    var $commentId;
+    var $textareaId;
+    if (sessionStorage.getItem('email') != null) {
+        alert("发表评论");
+        var blog_id = $('.commentbtn').attr('id'),
+            commentId = 'comment' + blog_id,
+            textareaId = 'textarea' + blog_id;
+
+        $commentId = document.getElementById(commentId);
+        $textareaId = document.getElementById(textareaId);
+        console.log(blog_id);
+
+        //获取评论信息
+        var comment_name = sessionStorage.getItem('username'),
+            comment_content = $($textareaId).val(),
+            comment_time = getNowFormatDate();
+
+        //json评论信息
+        var commentData = {
+            'blog_id': blog_id,
+            'comment_name': comment_name,
+            'comment_content': comment_content,
+            'comment_time': comment_time
+        };
+
+
+
+        //将博客信息存入数据库
+     /*       $.ajax({
+                url: '/insertComment',
+                async: true,
+                type: 'GET',
+                data: commentData
+            });*/
+
+        //发布后评论直接展示在页面
+        $($commentId).after(
+            '<li class="rv afh">\n' +
+            '<div class="rw">\n' +
+            '<strong>' + comment_name + ':&nbsp;</strong>' +
+            comment_content +
+            '</div>' +
+            '</li>\n');
+        /*editor.txt.clear();*/
+    } else {
+        alert('请登录账户！')
+    }
+}
+
 // 初始化七牛上传的方法
 function uploadInit() {
     var btnId = editor.imgMenuId;

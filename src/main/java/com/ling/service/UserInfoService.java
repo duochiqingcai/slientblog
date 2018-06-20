@@ -17,6 +17,4 @@ public interface UserInfoService {
 
     //获取用户信息
     UserInfo getUserInfoByEmail(@Param("user_email")String user_email);
-
-
 }

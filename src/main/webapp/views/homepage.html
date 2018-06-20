@@ -617,15 +617,14 @@
                             </div>
                             <br>
                             <a class="toggle" href="#"></a>
-                            <!--<a href="javascript:void(0)" onclick="hidecomment()" style="float: right" class="pinglun">评论</a>-->
+                            <a href="javascript:void(0)" onclick="showcomment()" style="float: right" class="pinglun" id="trt11">评论</a>
                             <!--<div style="text-align: right">
                                 <a href="#">评论</a>
                             </div>-->
                             <hr style="margin-top: 7px">
                             <div class="blog_comment" style="height: auto">
-                                <textarea name="commentarea" id="" cols="100" rows="3">
-                                </textarea>
-                                <button style="float: right">发表评论</button>
+                                <textarea name="commentarea" cols="100" rows="5"></textarea>
+                                <button style="float: right" onclick="docomment()">发表评论</button>
                                 <ul class="bow afa">
                                     <li class="rv afh">
                                         <div class="rw">
@@ -652,6 +651,7 @@
                                 </ul>
                             </div>
                         </div>
+
                     </div>
                 </div>
                 <div class="rv b agz ">
@@ -703,14 +703,15 @@
                             </div>
                             <br>
                             <a class="toggle" href="#"></a>
-                            <a href="javascript:void(0)" onclick="hidecomment()" style="float: right" class="pinglun">评论</a>
+                            <a href="javascript:void(0)" onclick="hidecomment()" style="float: right" class="commentbtn" id="test2">评论</a>
                             <!--<div style="text-align: right">
                                 <a href="#">评论</a>
                             </div>-->
                             <hr style="margin-top: 7px">
-                            <div class="blog_comment" style="height: auto" hidden="hidden">
-                                <textarea name="commentarea" cols="100" rows="5"></textarea>
-                                <ul class="bow afa">
+                            <div class="blog_comment" style="height: auto">
+                                <textarea class="textarea2" name="commentarea" cols="100" rows="5"></textarea>
+                                <button style="float: right" onclick="docomment();return false">发表评论</button>
+                                <ul class="bow afa" id="test22">
                                     <li class="rv afh">
                                         <div class="rw">
                                             <strong>Jacon Thornton: </strong>
@@ -723,7 +724,7 @@
                                             posuere consectetur est at lobortis.
                                         </div>
                                     </li>
-                                    <li class="rv">
+                                    <li class="rv afh">
                                         <div class="rw">
                                             <strong>Mark Otto: </strong>
                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dapibus,

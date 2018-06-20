@@ -11,18 +11,45 @@
         <result property="description" column="blog_description"/>
     </resultMap>-->
 
-    <!--1.根据用户邮箱，查询用户博客信息-->
-    <select id="getBlogByEmail" resultType="com.ling.pojo.Blog">
-        select blog_author,blog_content,blog_time
-        from blog where user_email=#{user_email}
+    <!--1.根据用户邮箱，查询用户博客信息及评论信息-->
+    <select id="getBlogByEmail" resultType="com.ling.dto.BlogDto">
+        select
+            blog.blog_id,blog.blog_author,blog.blog_content,blog.blog_time,
+        from blog
+        where blog.user_email=#{user_email}
         order by blog_time limit #{m},10;
     </select>
-    <!--2.分页获取博客信息，按时间排序-->
-    <select id="getAllBlog" resultType="com.ling.pojo.Blog">
-        select blog_author,blog_content,blog_picture,blog_time
+    <!--<select id="getBlogByEmail" resultType="com.ling.dto.BlogDto">
+        select
+            blog.blog_id,blog.blog_author,blog.blog_content,blog.blog_time,
+            comment.comment_name,comment.comment_content,comment.comment_time
+        from blog
+            left join comment
+            on blog.blog_id=comment.blog_id
+        where blog.user_email=#{user_email}
+        order by blog_time limit #{m},10;
+    </select>-->
+    <!--<select id="getBlogByEmail" resultType="com.ling.pojo.Blog">
+        select blog_id,blog_author,blog_content,blog_time
+        from blog where user_email=#{user_email}
+        order by blog_time limit #{m},10;
+    </select>-->
+    <!--2.分页获取博客信息及评论信息，按时间排序-->
+    <select id="getAllBlog" resultType="com.ling.dto.BlogDto">
+        select
+            blog.blog_id,blog.blog_author,blog.blog_content,blog.blog_time
         from blog
         order by blog_time limit #{m},10;
     </select>
+    <!--<select id="getAllBlog" resultType="com.ling.dto.BlogDto">
+        select
+            blog.blog_id,blog.blog_author,blog.blog_content,blog.blog_time,
+            comment.comment_name,comment.comment_content,comment.comment_time
+        from blog
+            left join comment
+                on blog.blog_id=comment.blog_id
+        order by blog_time limit #{m},10;
+    </select>-->
     <!--3.新增用户博客内容-->
     <insert id="addBlog" parameterType="String">
         insert into blog(user_email,blog_author,blog_content,blog_time) values(#{user_email},#{blog_author},#{blog_content},#{blog_time}) ;

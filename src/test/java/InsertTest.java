@@ -1,4 +1,5 @@
 import com.ling.dao.BlogDao;
+import com.ling.dao.CommentDao;
 import com.ling.dao.UserDao;
 import com.ling.dto.UserDto;
 import com.ling.pojo.Blog;
@@ -31,19 +32,13 @@ public class InsertTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(MailTest.class);
 
     @Resource
-    private UserDao userDao;
-    @Resource
-    private BlogDao blogDao;
+    private CommentDao commentDao;
     @Test
     public void insertT() {
         try {
             /*userDao.insertUser("san1","72b5009d20df160619688bd4c91ce637","2816924118@qq.com");*/
-            ArrayList<Blog> arrayList1=(ArrayList<Blog>) blogDao.getAllBlog(0);
+           commentDao.insertCommentByBlogId(25,"sfas","afdsafdsfdsfdsf","2018-06-19 14:54");
             /*UserDto arrayList=userDao.getUserByEmail("2816924118@qq.com");*/
-            System.out.println(arrayList1.get(1).getBlog_content());
-            /*for(Blog blog:map.values()){
-                System.out.println(blog.getBlog_content());
-            };*/
         }catch (DuplicateKeyException e){
             System.out.println("已存在");
         }
